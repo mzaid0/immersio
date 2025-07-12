@@ -1,0 +1,11 @@
+# ---------------- frontend ignore ------------
+/node_modules
+/frontend/node_modules
+/frontend/.next/
+/frontend/build
+
+
+# ---------------- backend ignore ------------
+/backend/node_modules
+/backend/.env
+/backend/dist

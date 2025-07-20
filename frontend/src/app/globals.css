@@ -44,6 +44,7 @@
 }
 
 :root {
+  font-family: var(--font-poppins), sans-serif;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.141 0.005 285.823);
@@ -102,7 +103,7 @@
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.21 0.006 285.885);
+  --sidebar: oklch(0.21 0.006 three85.885);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);
   --sidebar-primary-foreground: oklch(0.985 0 0);
@@ -118,5 +119,66 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-poppins), sans-serif;
+  }
+}
+
+@layer utilities {
+  .bg-grid {
+    background-image: linear-gradient(
+        to bottom,
+        #5c001a 0%,
+        /* Deep maroon */ #2d000d 40%,
+        /* Dark maroon */ #000000 100%
+      ),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M60 0H0V60H60V0Z M59 1V59H1V1H59Z' fill='%23d4af3708'/%3E%3C/svg%3E");
+    background-size: cover, 60px 60px;
+    background-blend-mode: overlay;
+    background-repeat: repeat;
+    background-position: center;
+    color: #f3f3f3;
+  }
+
+  .text-gold-accent {
+    color: #b48555;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+  }
+
+  .text-light-gold {
+    color: #f5e7c1;
+  }
+
+  .text-light-maroon {
+    color: #e0c9d1; 
+  }
+
+  .bg-gold-gradient {
+    background: linear-gradient(145deg, #b48555, #f0d87e);
+    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+  }
+
+  .bg-gold-gradient-hover {
+    background: linear-gradient(145deg, #e6c86e, #f8e9a6);
+    box-shadow: 0 15px 30px rgba(212, 175, 55, 0.6);
+  }
+
+  .tracking-wide {
+    letter-spacing: 0.03em;
+  }
+
+  @keyframes text-glow {
+    0% {
+      text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+    }
+    50% {
+      text-shadow: 0 0 20px rgba(212, 175, 55, 0.7);
+    }
+    100% {
+      text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+    }
+  }
+
+  .text-glow {
+    animation: text-glow 3s ease-in-out infinite;
   }
 }

@@ -1,11 +1,13 @@
-import "./globals.css";
+import { ThemeProvider } from "@/components/ui/theme-provider";
+import "./styles/globals.css";
 import { Poppins } from "next/font/google";
+import Header from "@/components/layout/header";
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"], 
-  variable: "--font-poppins",          
-  display: "swap",                 
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-poppins",
+  display: "swap",
 });
 
 export const metadata = {
@@ -19,8 +21,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={poppins.className}>
-      <body>{children}</body>
+    <html lang="en" suppressHydrationWarning className={poppins.className}>
+      <body>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+        >
+          <Header />
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

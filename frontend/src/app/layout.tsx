@@ -1,7 +1,6 @@
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import "./styles/globals.css";
 import { Poppins } from "next/font/google";
-import Header from "@/components/layout/header";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -28,7 +27,6 @@ export default function RootLayout({
           defaultTheme="system"
           enableSystem
         >
-          <Header />
           {children}
         </ThemeProvider>
       </body>

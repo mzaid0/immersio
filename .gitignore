@@ -20,3 +20,4 @@ apps/backend/.env
 
 # Shared/package build
 packages/shared/dist/
+packages/setup.txt

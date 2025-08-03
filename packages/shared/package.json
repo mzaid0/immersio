@@ -1,5 +1,5 @@
 {
-  "name": "@my-project/shared",
+  "name": "@immersio/shared",
   "version": "1.0.0",
   "description": "Shared types and validators for my-project",
   "main": "dist/index.js",
@@ -28,7 +28,7 @@
       "types": "./dist/types/index.d.ts"
     },
     "./validators": {
-      "import": "./dist/validators/index.js", 
+      "import": "./dist/validators/index.js",
       "types": "./dist/validators/index.d.ts"
     }
   }

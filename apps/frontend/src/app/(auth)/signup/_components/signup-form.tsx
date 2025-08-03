@@ -16,7 +16,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { SignupFormData, signupSchema } from '@my-project/shared';
+import { SignupFormData, signupSchema } from "@immersio/shared";
 
 const formatDate = (date: Date | undefined) => {
     if (!date) return "";

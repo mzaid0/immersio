@@ -27,7 +27,7 @@
         "helmet": "8.1.0",
         "morgan": "1.10.0",
         "zod": "^4.0.14",
-        "@my-project/shared": "file:../../packages/shared"
+        "@immersio/shared": "file:../../packages/shared"
     },
     "devDependencies": {
         "@eslint/js": "9.31.0",

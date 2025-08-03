@@ -1,0 +1,47 @@
+{
+    "name": "backend",
+    "version": "1.0.0",
+    "description": "",
+    "main": "dist/app.js",
+    "type": "module",
+    "scripts": {
+        "start": "node dist/app.js",
+        "build": "tsc",
+        "watch": "tsc -w",
+        "dev": "concurrently \"npm run watch\" \"npm run start:dev\"",
+        "start:dev": "node --watch dist/app.js",
+        "prisma:generate": "prisma generate",
+        "prisma:migrate": "prisma migrate dev --name init",
+        "prisma:studio": "npx prisma studio",
+        "prisma:push": "npx prisma db push",
+        "type-check": "tsc --noEmit"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@prisma/client": "^6.11.1",
+        "cors": "2.8.5",
+        "dotenv": "17.2.0",
+        "express": "5.1.0",
+        "helmet": "8.1.0",
+        "morgan": "1.10.0",
+        "zod": "^4.0.14",
+        "@my-project/shared": "file:../../packages/shared"
+    },
+    "devDependencies": {
+        "@eslint/js": "9.31.0",
+        "@types/cors": "2.8.19",
+        "@types/express": "4.17.21",
+        "@types/helmet": "4.0.0",
+        "@types/morgan": "1.9.10",
+        "@types/node": "24.0.13",
+        "concurrently": "^9.0.1",
+        "eslint": "9.31.0",
+        "globals": "16.3.0",
+        "prisma": "^6.11.1",
+        "tsx": "4.20.3",
+        "typescript": "5.8.3",
+        "typescript-eslint": "8.36.0"
+    }
+}

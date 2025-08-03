@@ -1,0 +1,35 @@
+{
+  "name": "@my-project/shared",
+  "version": "1.0.0",
+  "description": "Shared types and validators for my-project",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "type-check": "tsc --noEmit",
+    "lint": "echo 'No linting configured for shared package'"
+  },
+  "dependencies": {
+    "zod": "^4.0.14"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./types": {
+      "import": "./dist/types/index.js",
+      "types": "./dist/types/index.d.ts"
+    },
+    "./validators": {
+      "import": "./dist/validators/index.js", 
+      "types": "./dist/validators/index.d.ts"
+    }
+  }
+}

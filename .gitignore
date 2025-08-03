@@ -1,13 +1,22 @@
+# VS Code settings
 .vscode
 
-# ---------------- frontend ignore ------------
-/node_modules
-/frontend/node_modules
-/frontend/.next/
-/frontend/build
+# Node modules
+node_modules/
+**/node_modules/
 
+# Env files (anywhere)
+.env
+**/.env
 
-# ---------------- backend ignore ------------
-/backend/node_modules
-/backend/.env
-/backend/dist
+# Frontend build/next
+apps/frontend/.next/
+apps/frontend/build/
+apps/frontend/.env
+
+# Backend dist/env
+apps/backend/dist/
+apps/backend/.env
+
+# Shared/package build
+packages/shared/dist/

@@ -2,6 +2,7 @@ import { ThemeProvider } from "@/components/ui/theme-provider";
 import "./styles/globals.css";
 import { Poppins } from "next/font/google";
 import { Toaster } from "sonner";
+import { Providers } from "@/components/query-provider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -28,8 +29,10 @@ export default function RootLayout({
           defaultTheme="system"
           enableSystem
         >
-          {children}
-          <Toaster richColors closeButton position="top-center" />
+          <Providers>
+            {children}
+            <Toaster richColors closeButton position="top-center" />
+          </Providers>
         </ThemeProvider>
       </body>
     </html>

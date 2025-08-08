@@ -7,10 +7,11 @@
         "packages/*"
     ],
     "scripts": {
-        "dev": "concurrently \"npm run frontend\" \"npm run backend\" \"npm run shared\" --names \"frontend,backend,shared\" --prefix-colors \"blue,green,yellow\"",
+        "dev": "concurrently \"npm run frontend\" \"npm run backend\" \"npm run shared\" \"npm run prisma:studio\" --names \"frontend,backend,shared,studio\" --prefix-colors \"blue,green,yellow,magenta\"",
         "frontend": "cd apps/frontend && npm run dev",
         "backend": "cd apps/backend && npm run dev",
         "shared": "cd packages/shared && npm run dev",
+        "prisma:studio": "cd apps/backend && npx prisma studio",
         "build": "npm run build:shared && npm run build:backend && npm run build:frontend",
         "build:shared": "cd packages/shared && npm run build",
         "build:backend": "cd apps/backend && npm run build",
@@ -29,6 +30,7 @@
     },
     "dependencies": {
         "@hookform/resolvers": "^5.2.1",
+        "axios": "^1.11.0",
         "zod": "^4.0.14"
     }
 }

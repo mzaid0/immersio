@@ -1,1 +1,1 @@
-export * from "./signup-validator"
+export * from "./auth-validator.js"

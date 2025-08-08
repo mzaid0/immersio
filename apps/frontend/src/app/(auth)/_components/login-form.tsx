@@ -145,7 +145,7 @@ export default function LoginForm() {
                                 </div>
 
                                 {/* Submit */}
-                                <Button onClick={handleSubmit(onSubmit)} className="w-full bg-emerald-600 hover:bg-emerald-700" disabled={isPending}>
+                                <Button onClick={handleSubmit(onSubmit)} disabled={isPending}>
                                     {isPending ? (
                                         <>
                                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />

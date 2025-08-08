@@ -30,7 +30,7 @@ export default function CalendarDatePicker({ value, onChange, label = "Date", id
   const [displayValue, setDisplayValue] = useState(formatDate(date));
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col ">
       <Label htmlFor={id} className="px-1">{label}</Label>
       <div className="relative flex gap-2">
         <Input

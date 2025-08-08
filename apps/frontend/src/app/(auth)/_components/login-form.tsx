@@ -79,10 +79,8 @@ export default function LoginForm() {
                         className="w-full max-w-md"
                     >
                         <Card className="bg-white/80 dark:bg-zinc-950/70 border border-zinc-200/70 dark:border-zinc-800/70 shadow-sm">
-                            <CardHeader className="relative pb-2">
-                                <div className="absolute top-0 right-0">
-                                    <ThemeToggleButton variant="circle" start="top-right" />
-                                </div>
+                            <CardHeader className=" pb-2">
+
                                 <CardTitle className="text-center text-2xl font-bold">Sign In</CardTitle>
                                 <div className="mt-4 flex justify-center">
                                     <span className="h-1.5 w-16 rounded-full bg-emerald-500" />
@@ -130,9 +128,9 @@ export default function LoginForm() {
                                                 <Checkbox
                                                     id="rememberMe"
                                                     checked={!!field.value}
-                                                    onCheckedChange={(checked) => field.onChange(!!checked)} // coerce CheckedState -> boolean
+                                                    onCheckedChange={(checked) => field.onChange(!!checked)}
                                                 />
-                                                <Label htmlFor="rememberMe" className="text-xs md:text-sm">
+                                                <Label htmlFor="rememberMe" className="text-xs md:text-sm mb-0">
                                                     Remember me
                                                 </Label>
                                             </div>
@@ -140,7 +138,7 @@ export default function LoginForm() {
                                     />
                                     <Link
                                         href="/forgot-password"
-                                        className="text-xs md:text-sm text-emerald-700 dark:text-emerald-400 hover:underline"
+                                        className="text-end text-xs md:text-sm text-emerald-700 dark:text-emerald-400 hover:underline"
                                     >
                                         Forgot password?
                                     </Link>

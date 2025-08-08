@@ -3,6 +3,7 @@ import "./styles/globals.css";
 import { Poppins } from "next/font/google";
 import { Toaster } from "sonner";
 import { Providers } from "@/components/query-provider";
+import SplashAfterHydration from "@/components/ui/SplashAfterHydration";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -30,6 +31,7 @@ export default function RootLayout({
           enableSystem
         >
           <Providers>
+            <SplashAfterHydration />
             {children}
             <Toaster richColors closeButton position="top-center" />
           </Providers>

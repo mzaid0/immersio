@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import VerificationResult from '../_components/verification-result';
 
 interface PageProps {
-    params: { token: string };
+    params: Promise<{ token: string }>;
 }
 
 async function verifyEmailToken(token: string) {
@@ -23,8 +23,12 @@ async function verifyEmailToken(token: string) {
 }
 
 export default async function VerifyEmailPage({ params }: PageProps) {
+
     const { token } = await params;
+    
     if (!token) notFound();
+    
     const result = await verifyEmailToken(token);
+    
     return <VerificationResult result={result} />;
 }

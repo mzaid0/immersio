@@ -3,6 +3,8 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@keyframes grid { 0% { transform: translateX(0); } 100% { transform: translateX(-60px); } }
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

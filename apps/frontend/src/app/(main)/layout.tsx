@@ -1,5 +1,6 @@
+import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/header";
-// import Footer from "@/components/layout/footer";
+import Providers from "@/components/providers";
 
 export default function MainLayout({
     children,
@@ -10,9 +11,9 @@ export default function MainLayout({
         <div className="min-h-screen flex flex-col">
             <Header />
             <main className="flex-1">
-                {children}
+                <Providers>{children}</Providers>
             </main>
-            {/* <Footer /> */}
+            <Footer />
         </div>
     );
 }

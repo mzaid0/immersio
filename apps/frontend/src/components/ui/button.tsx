@@ -10,11 +10,11 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "w-full bg-gradient-to-r from-emerald-600 to-emerald-700 text-white hover:-translate-y-0.5 transition duration-200 inline-block text-center px-4 py-2 rounded-md button text-sm font-semibold relative cursor-pointer",
+          " bg-gradient-to-r from-emerald-600 to-emerald-700 text-white hover:-translate-y-0.5 transition duration-200 inline-block text-center px-4 py-2 rounded-md button text-sm font-semibold relative cursor-pointer",
         destructive:
           "bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
         outline:
-          "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 w-full border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-zinc-700 text-gray-700 dark:text-gray-300 cursor-pointer",
+          "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50  border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-zinc-700 text-gray-700 dark:text-gray-300 cursor-pointer",
         secondary:
           "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80",
         ghost:

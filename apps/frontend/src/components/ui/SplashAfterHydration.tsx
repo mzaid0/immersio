@@ -1,50 +1,54 @@
 "use client";
-import { useEffect, useState, useRef } from "react";
-import { BrandMark } from "./BrandMark";
+
+import { useEffect, useState } from "react";
+// import { BrandMark } from "@/components/ui/BrandMark";
+import TypingDots from "@/components/ui/TypingDots";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function SplashAfterHydration() {
+/**
+ * Shows a splash only until fonts + window load finish.
+ * Theme-aware colors. Optionally, show once per session with sessionStorage.
+ */
+export default function SplashAfterHydration({ showOncePerSession = true }: { showOncePerSession?: boolean }) {
   const [ready, setReady] = useState(false);
-  const shownOnce = useRef(false);
 
   useEffect(() => {
-    if (shownOnce.current) {
+    if (showOncePerSession && typeof window !== "undefined" && sessionStorage.getItem("splash_shown") === "1") {
       setReady(true);
       return;
     }
 
-    const fontsReady = (document as any).fonts?.ready ?? Promise.resolve();
+    const fontsReady: Promise<unknown> =
+      (document as any).fonts?.ready ?? Promise.resolve();
     const windowLoad = new Promise<void>((res) => {
       if (document.readyState === "complete") res();
       else window.addEventListener("load", () => res(), { once: true });
     });
 
     Promise.all([fontsReady, windowLoad]).then(() => {
-      shownOnce.current = true;
+      if (showOncePerSession) sessionStorage.setItem("splash_shown", "1");
       setReady(true);
     });
-  }, []);
+  }, [showOncePerSession]);
 
   return (
     <AnimatePresence>
       {!ready && (
         <motion.div
           key="splash-hydration"
-          className="fixed inset-0 z-[60] grid place-items-center bg-black text-white"
+          className="fixed inset-0 z-[60] grid place-items-center bg-background text-foreground"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.35 }}
+          role="status"
+          aria-live="polite"
+          aria-busy="true"
         >
           <div className="flex flex-col items-center gap-6">
-            <BrandMark />
-            <div className="h-1 w-56 overflow-hidden rounded-full bg-white/20">
-              <motion.div
-                className="h-full w-28 bg-white"
-                initial={{ x: "-120%" }}
-                animate={{ x: ["-120%", "200%"] }}
-                transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
-              />
-            </div>
+
+            <TypingDots size={64} className="text-emerald-600 dark:text-emerald-400" />
+
+            
           </div>
         </motion.div>
       )}

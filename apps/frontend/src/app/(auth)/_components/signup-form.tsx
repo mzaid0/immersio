@@ -184,7 +184,7 @@ export default function SignupForm() {
                                                 )}
                                             />
 
-                                            <Button onClick={nextStep} disabled={isPending}>
+                                            <Button className="w-full" onClick={nextStep} disabled={isPending}>
                                                 Continue
                                             </Button>
 

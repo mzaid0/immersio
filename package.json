@@ -18,7 +18,11 @@
         "build:frontend": "cd apps/frontend && npm run build",
         "clean": "rm -rf apps/*/dist apps/*/node_modules packages/*/dist packages/*/node_modules node_modules",
         "install:all": "npm install",
-        "postinstall": "cd packages/shared && npm run build"
+        "postinstall": "cd packages/shared && npm run build",
+        "start:frontend": "cd apps/frontend && npm run start",
+        "start:backend": "cd apps/backend && npm run start",
+        "start:all": "concurrently \"npm run start:frontend\" \"npm run start:backend\" --names \"frontend,backend\" --prefix-colors \"blue,green\"",
+        "prod": "npm run build && npm run start:all"
     },
     "devDependencies": {
         "concurrently": "^9.0.1",

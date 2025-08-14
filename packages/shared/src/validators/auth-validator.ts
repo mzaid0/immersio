@@ -65,8 +65,6 @@ export const signupSchema = z.object({
         message: "You must accept the terms and conditions"
     }),
 
-    acceptMarketing: z.boolean().optional().default(false),
-
 }).refine((data) => data.password === data.confirmPassword, {
     message: "Passwords do not match",
     path: ["confirmPassword"],
@@ -95,7 +93,7 @@ export const loginSchema = z.object({
     password: z
         .string()
         .min(1, "Password is required"),
-    rememberMe: z.boolean().optional().default(false),
+    rememberMe: z.boolean().optional(),
 });
 
 export type LoginFormData = z.infer<typeof loginSchema>;

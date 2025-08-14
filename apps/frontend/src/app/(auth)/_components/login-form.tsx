@@ -7,21 +7,16 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { showErrorToast, showSuccessToast } from "@/components/ui/custom-toast";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import ThemeToggleButton from "@/components/ui/theme-toggle-button";
 import { getErrorMessage } from "@/helper/error-helper";
 import { loginApi } from "@/services/auth-service";
-import { loginSchema } from "@Immersio/shared";
+import { LoginFormData, loginSchema } from "@Immersio/shared";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
 import { Controller, useForm } from "react-hook-form";
-import { z } from "zod";
 import SocialButtons from "./SocialButtons";
-
-type FormInput = z.input<typeof loginSchema>;
-type FormOutput = z.output<typeof loginSchema>;
 
 export default function LoginForm() {
 
@@ -29,7 +24,7 @@ export default function LoginForm() {
         control,
         handleSubmit,
         formState: { errors },
-    } = useForm<FormInput>({
+    } = useForm<LoginFormData>({
         resolver: zodResolver(loginSchema),
         defaultValues: {
             identifier: "",
@@ -40,7 +35,7 @@ export default function LoginForm() {
     });
 
     const { mutate, isPending } = useMutation({
-        mutationFn: (payload: FormOutput) => loginApi(payload),
+        mutationFn: (payload: LoginFormData) => loginApi(payload),
         onSuccess: ({ user, emailVerified }) => {
             showSuccessToast("Login successful!", emailVerified ? "Welcome back!" : "Please verify your email.");
         },
@@ -49,8 +44,8 @@ export default function LoginForm() {
         },
     });
 
-    const onSubmit = (data: FormInput) => {
-        const payload: FormOutput = loginSchema.parse(data);
+    const onSubmit = (data: LoginFormData) => {
+        const payload: LoginFormData = loginSchema.parse(data);
         mutate(payload);
     };
 

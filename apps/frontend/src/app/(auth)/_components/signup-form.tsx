@@ -1,30 +1,25 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
-import { Controller, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
-import { AnimatePresence, motion } from "framer-motion";
-import { z } from "zod";
-import { signupApi } from "@/services/auth-service";
-import { getErrorMessage } from "@/helper/error-helper";
-import { signupSchema } from "@Immersio/shared";
 import { Button } from "@/components/ui/button";
+import CalendarDatePicker from "@/components/ui/CalendarDatePicker";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
+import { showErrorToast, showSuccessToast } from "@/components/ui/custom-toast";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import ThemeToggleButton from "@/components/ui/theme-toggle-button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import PasswordField from "@/components/ui/PasswordField";
-import CalendarDatePicker from "@/components/ui/CalendarDatePicker";
-import { showErrorToast, showSuccessToast } from "@/components/ui/custom-toast";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { getErrorMessage } from "@/helper/error-helper";
+import { signupApi } from "@/services/auth-service";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { SignupFormData, signupSchema } from "@Immersio/shared";
+import { useMutation } from "@tanstack/react-query";
+import { AnimatePresence, motion } from "framer-motion";
 import { Loader2 } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 import SocialButtons from "./SocialButtons";
-
-type FormInput = z.input<typeof signupSchema>;
-type FormOutput = z.output<typeof signupSchema>;
 
 export default function SignupForm() {
 
@@ -36,7 +31,7 @@ export default function SignupForm() {
         formState: { errors },
         trigger,
         reset,
-    } = useForm<FormInput>({
+    } = useForm<SignupFormData>({
         resolver: zodResolver(signupSchema),
         defaultValues: {
             email: "",
@@ -49,13 +44,12 @@ export default function SignupForm() {
             dateOfBirth: "",
             gender: "Male",
             acceptTerms: false,
-            acceptMarketing: false,
         },
         mode: "onChange",
     });
 
     const { mutate, isPending } = useMutation({
-        mutationFn: (payload: FormOutput) => signupApi(payload),
+        mutationFn: (payload: SignupFormData) => signupApi(payload),
         onSuccess: ({ message }) => {
             showSuccessToast("Account created!", message ?? "Welcome to Immersio!");
             reset();
@@ -73,8 +67,8 @@ export default function SignupForm() {
         }
     };
 
-    const onSubmit = (data: FormInput) => {
-        const payload: FormOutput = signupSchema.parse(data);
+    const onSubmit = (data: SignupFormData) => {
+        const payload: SignupFormData = signupSchema.parse(data);
         mutate(payload);
     };
 
@@ -308,21 +302,6 @@ export default function SignupForm() {
                                                     )}
                                                 />
                                                 {errors.acceptTerms && <p className="text-xs text-red-500">{errors.acceptTerms.message}</p>}
-
-                                                <Controller
-                                                    name="acceptMarketing"
-                                                    control={control}
-                                                    render={({ field }) => (
-                                                        <div className="flex items-center space-x-2">
-                                                            <Checkbox
-                                                                id="marketing"
-                                                                checked={!!field.value}
-                                                                onCheckedChange={(checked) => field.onChange(!!checked)}
-                                                            />
-                                                            <Label htmlFor="marketing" className="text-sm">Receive marketing emails</Label>
-                                                        </div>
-                                                    )}
-                                                />
                                             </div>
 
                                             <div className="flex gap-3">
@@ -348,7 +327,7 @@ export default function SignupForm() {
                                             </div>
 
                                             <SocialButtons />
-                                            
+
                                         </motion.div>
                                     )}
                                 </AnimatePresence>

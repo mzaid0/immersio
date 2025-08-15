@@ -1,9 +1,45 @@
 "use client";
 
-import * as React from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
-import { Sparkles, ArrowRight, Truck, RefreshCcw, ShieldCheck } from "lucide-react";
-import { RetroGrid, MagneticButton, useAurora } from "./primitives";
+import { ArrowRight, RefreshCcw, ShieldCheck, Sparkles, Truck } from "lucide-react";
+import * as React from "react";
+import { Button } from "@/components/ui/button";
+import { animate, useMotionTemplate, useMotionValue } from "framer-motion";
+
+
+const useAurora = () => {
+  const color = useMotionValue("#10B981");
+  React.useEffect(() => {
+    animate(color, ["#10B981", "#34D399", "#059669", "#A7F3D0", "#10B981"], {
+      ease: "easeInOut", duration: 10, repeat: Infinity, repeatType: "mirror",
+    });
+  }, [color]);
+
+  const [isDark, setIsDark] = React.useState(false);
+  React.useEffect(() => {
+    const el = document.documentElement;
+    const update = () => setIsDark(el.classList.contains("dark"));
+    update();
+    const obs = new MutationObserver(update);
+    obs.observe(el, { attributes: true, attributeFilter: ["class"] });
+    return () => obs.disconnect();
+  }, []);
+
+  const base = isDark ? "#0a0a0a" : "#f6f6f6";
+  return useMotionTemplate`radial-gradient(120% 120% at 50% -10%, ${color}, ${base} 55%)`;
+};
+
+const RetroGrid = ({ className = "", angle = 65 }: { className?: string; angle?: number }) => (
+  <div
+    className={`pointer-events-none absolute size-full overflow-hidden opacity-40 [perspective:200px] ${className}`}
+    style={{ "--grid-angle": `${angle}deg` } as React.CSSProperties}
+  >
+    <div className="absolute inset-0 [transform:rotateX(var(--grid-angle))]">
+      <div className="animate-[grid_30s_linear_infinite] [background-repeat:repeat] [background-size:60px_60px] [height:300vh] [inset:0%_0px] [margin-left:-50%] [transform-origin:100%_0_0] [width:600vw] [background-image:linear-gradient(to_right,rgba(0,0,0,0.08)_1px,transparent_0),linear-gradient(to_bottom,rgba(0,0,0,0.08)_1px,transparent_0)] dark:[background-image:linear-gradient(to_right,rgba(255,255,255,0.12)_1px,transparent_0),linear-gradient(to_bottom,rgba(255,255,255,0.12)_1px,transparent_0)]" />
+    </div>
+    <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent to-90% dark:from-black" />
+  </div>
+);
 
 export default function Hero() {
   const bg = useAurora();
@@ -51,12 +87,12 @@ export default function Hero() {
           </motion.p>
 
           <motion.div variants={item} className="flex flex-col items-center gap-4 sm:flex-row">
-            <MagneticButton className="bg-emerald-600 text-white hover:bg-emerald-700">
+            <Button className="flex">
               Shop Men <ArrowRight className="ml-2 h-5 w-5" />
-            </MagneticButton>
-            <MagneticButton className="border border-emerald-600 bg-transparent text-emerald-700 hover:bg-emerald-50 dark:border-emerald-400 dark:text-emerald-200 dark:hover:bg-emerald-400/10">
+            </Button>
+            <Button variant="outline" >
               Shop Women <ArrowRight className="ml-2 h-5 w-5" />
-            </MagneticButton>
+            </Button>
           </motion.div>
 
           <div className="mt-14 grid w-full grid-cols-1 gap-3 px-2 sm:grid-cols-3">

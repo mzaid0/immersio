@@ -1,11 +1,10 @@
 "use client";
 
-import { Heart, Star, ArrowRight } from "lucide-react";
-import { MagneticButton } from "./primitives";
-import { Button } from "@/components/ui/button";
 import { fadeUp, scaleIn, stagger } from "@/components/animations/presets";
 import MotionSection from "@/components/MotionSection";
-import { motion } from "framer-motion"
+import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import { ArrowRight, Heart, Star } from "lucide-react";
 
 const ColorDot = ({ hex }: { hex: string }) => (
   <span className="inline-block size-4 rounded-full border border-black/10 dark:border-white/10" style={{ backgroundColor: hex }} />
@@ -42,9 +41,9 @@ function ProductCard({
         </div>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">{colors.slice(0, 3).map((c, i) => <ColorDot key={i} hex={c} />)}</div>
-          <MagneticButton className="rounded-full bg-emerald-600 px-5 py-2 text-sm text-white hover:bg-emerald-700 dark:bg-emerald-500 dark:text-black dark:hover:bg-emerald-400">
+          <Button>
             Add <ArrowRight className="ml-2 h-4 w-4" />
-          </MagneticButton>
+          </Button>
         </div>
       </div>
     </div>
